@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-white text-center py-4 fixed bottom-0 w-full">
+        <footer className="bg-yellow-100 text-pink-100 text-center py-4 fixed bottom-0 w-full">
             <p>Web Development at Berkeley</p>
         </footer>
     );
