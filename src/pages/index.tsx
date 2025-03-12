@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,9 +19,11 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100">
       <Header />
       <main className="flex flex-col items-center p-6">
-        <button className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-blue-600">
-          Go to Playlists
-        </button>
+      <Link href="/playlists">
+          <button className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-blue-600">
+            Go to Playlists
+          </button>
+        </Link>
       </main>
       <Footer />
     </div>
