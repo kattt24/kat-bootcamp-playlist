@@ -8,10 +8,10 @@ export default function PlaylistsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {playlists.map((playlist) => (
           <Link key={playlist.id} href={`/playlists/${playlist.id}`}>
-            <div className="p-6 bg-pink-300 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700 transition">
+            <div className="p-6 bg-pink-300 rounded-lg shadow-lg cursor-pointer hover:bg-pink-50 transition">
               <h2 className="text-xl font-semibold">{playlist.title}</h2>
-              <p className="text-gray-400">{playlist.description}</p>
-              <p className="text-gray-300 mt-2">{playlist.songs.length} songs</p>
+              <p className="text-pink-500">{playlist.description}</p>
+              <p className="text-pink-400 mt-2">{playlist.songs.length} songs</p>
             </div>
           </Link>
         ))}

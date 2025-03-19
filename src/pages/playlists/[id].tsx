@@ -11,7 +11,7 @@ export default function PlaylistDetailPage() {
     }
 
     return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
+    <div className="min-h-screen bg-pink-300 text-white p-8">
       <h1 className="text-3xl font-bold">{playlist.title}</h1>
       <p className="text-gray-400">{playlist.description}</p>
 

@@ -20,7 +20,7 @@ export default function Home() {
       <Header />
       <main className="flex flex-col items-center p-6">
       <Link href="/playlists">
-          <button className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-blue-600">
+          <button className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-50">
             Go to Playlists
           </button>
         </Link>
