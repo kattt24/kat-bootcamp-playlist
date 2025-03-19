@@ -3,7 +3,7 @@ import { playlists } from "@/data/example_data";
 
 export default function PlaylistsPage() {
     return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
+    <div className="min-h-screen bg-pink-100 text-white p-8">
       <h1 className="text-3xl font-bold mb-6">Playlists</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {playlists.map((playlist) => (
