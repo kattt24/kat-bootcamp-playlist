@@ -18,7 +18,7 @@ export default function PlaylistDetailPage() {
       <h2 className="text-2xl font-semibold mt-6">Songs</h2>
       <ul className="mt-4">
         {playlist.songs.map((song) => (
-          <li key={song.id} className="p-4 bg-pink-600 rounded-lg shadow-md my-2">
+          <li key={song.id} className="p-4 bg-pink-500 rounded-lg shadow-md my-2">
             <h3 className="text-lg font-semibold">{song.title}</h3>
             <p className="text-pink-400">
               {song.artist} - {song.album} <span className="text-white">({song.duration})</span>
