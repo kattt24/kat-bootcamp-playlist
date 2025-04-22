@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect} from "react";
 
 export type Song = {
-  id: number | string;
+  id: number;
   title: string;
   artist: string;
   album: string;
