@@ -15,12 +15,14 @@ export default function PlaylistDetailPage() {
 
   useEffect(() => {
     if (!searchTerm) return;
+  
     const delay = setTimeout(() => {
       fetch(`/api/spotify-search?q=${encodeURIComponent(searchTerm)}`)
         .then((res) => res.json())
         .then((data) => setResults(data.results || []))
-        .catch((err) => console.error('Search error:', err));
+        .catch((err) => console.error("Search error:", err));
     }, 400);
+  
     return () => clearTimeout(delay);
   }, [searchTerm]);
 
@@ -39,30 +41,39 @@ export default function PlaylistDetailPage() {
         className="w-full p-2 border rounded mb-6"
       />
 
-      {results.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Search Results</h2>
-          <ul className="space-y-2">
-            {results.map((track) => (
-              <li key={track.id} className="flex items-center gap-4 bg-white p-4 rounded shadow">
-                {track.image && (
-                  <img src={track.image} alt={track.title} className="w-12 h-12 rounded" />
-                )}
-                <div className="flex-1">
-                  <p className="font-semibold">{track.title}</p>
-                  <p className="text-sm text-gray-600">{track.artist} • {track.album}</p>
-                </div>
-                <button
-                  onClick={() => addSong(playlist.id, { ...track })}
-                  className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-                >
-                  +
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+{results.length > 0 && (
+  <div className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">Search Results</h2>
+    <ul className="space-y-2">
+      {results.map((track) => (
+        <li
+          key={track.id}
+          className="flex items-center gap-4 bg-white p-4 rounded shadow"
+        >
+          {track.image && (
+            <img
+              src={track.image}
+              alt={track.title}
+              className="w-12 h-12 rounded"
+            />
+          )}
+          <div className="flex-1">
+            <p className="font-semibold">{track.title}</p>
+            <p className="text-sm text-gray-600">
+              {track.artist} • {track.album}
+            </p>
+          </div>
+          <button
+            onClick={() => addSong(playlist.id, { ...track })}
+            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+          >
+            +
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
 
       <h2 className="text-2xl font-semibold mt-6 mb-2">Songs</h2>
       <ul>
