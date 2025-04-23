@@ -2,6 +2,7 @@ import { usePlaylist } from '@/context/playlistcontext';
 import { useState } from 'react';
 import PlaylistForm from '@/components/playlistform';
 import type { Playlist } from '@/context/playlistcontext';
+import Link from "next/link";
 
 export default function PlaylistsPage() {
   const { playlists, addPlaylist, editPlaylist, addSong, deleteSong } = usePlaylist();
@@ -34,8 +35,13 @@ export default function PlaylistsPage() {
           <li key={p.id} className="bg-white text-black p-4 rounded shadow my-2">
             <h2 className="text-xl font-semibold">{p.title}</h2>
             <p>{p.description}</p>
+
             <button onClick={() => { setShowForm(true); setEditing(p); }} className="text-pink-600 mt-2">Edit</button>
-            <button onClick={() => addSong(p.id, { id: Date.now(), title: 'New Song', artist: 'Unknown', album: 'N/A', duration: '3:00' })} className="ml-2 text-green-600">+ Add Song</button>
+
+            <Link href={`/playlists/${p.id}`}>
+              <span className="ml-2 text-green-600 cursor-pointer">+ Add Song</span>
+            </Link>
+                        
             <ul className="mt-2">
               {p.songs.map(song => (
                 <li key={song.id} className="flex justify-between items-center">

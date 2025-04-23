@@ -3,11 +3,10 @@ export default function handler(req, res) {
       const playlists = [
         {
           id: '1',
-          title: 'Hard Summer',
-          description: '#getLIT',
+          title: 'Study',
+          description: 'songs to study to',
           songs: [
-            { id: 1, title: 'Dreamin (feat. Daya)', artist: 'Dom Dolla', album: 'Single', duration: '2:51' },
-            { id: 2, title: 'Reach Out', artist: 'MALUGI', album: 'Single', duration: '2:18' },
+            { id: 1, title: 'One Summer Day', artist: 'Joe Hisaishi', album: '', duration: '3:09' },
           ],
         },
         {
