@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export type Song = {
     id: string;
     title: string;
@@ -7,6 +9,7 @@ export type Song = {
 };
 
 export type Playlist = {
+    _id: Key | null | undefined;
     id: string;
     title: string;
     description: string;
