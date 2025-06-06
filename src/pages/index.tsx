@@ -58,13 +58,13 @@ export default function Home() {
       <Header />
         <main className="flex items-center p-6 z-10 justify-between w-full px-12 py-24">
           {/* Left: Welcome Text + Button */}
-          <div className="flex-1 flex justify-center">
+          <div className="flex-1 flex justify-center pl-25">
             <div className="flex flex-col items-center text-center space-y-4 py-12">
-              <h1 className="text-7xl font-bold text-pink-600">Welcome</h1>
-              <p className="text-lg text-pink-800">here are a couple of my playlists</p>
-              <p className="text-lg text-pink-800">it's a mix of everything</p>
+              <h1 className="text-7xl font-bold text-pink-600 yeseva-one-regular">Welcome</h1>
+              <p className="text-lg text-pink-800 gloria-hallelujah-regular">here are a couple of my playlists</p>
+              <p className="text-lg text-pink-800 gloria-hallelujah-regular">it's a mix of everything</p>
               <Link href="/playlists">
-                <button className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-50">
+                <button className="px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-50">
                   Go to Playlists
                 </button>
               </Link>
@@ -72,12 +72,13 @@ export default function Home() {
           </div>
 
           {/* Right: Pink rectangle */}
-          <div className="flex-1 flex justify-end pr-20 relative">
-            <div className="w-120 h-[34rem] bg-pink-200 rounded-xl shadow-md z-10">
+          <div className="flex-1 flex justify-end pr-35 relative">
+            <div className="w-[28rem] h-[28rem] bg-pink-200 rounded-full shadow-md z-10">
+              <div className="absolute w-[28rem] h-[28rem] rounded-full border-[10px] border-[#FFA2B5] animate-pulse z-[2]" />
               <img
                 src="/snoopy-music.png"
                 alt="Snoopy"
-                className="absolute bottom-9 right-28 z-20 transform scale-114"
+                className="absolute -top-6 right-43 z-20 transform scale-100 snoopy-float"
               />
             </div>
           </div>
