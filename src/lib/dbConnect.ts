@@ -20,6 +20,7 @@ async function dbConnect(): Promise<typeof mongoose> {
   if (cached.conn) return cached.conn;
   if (!cached.promise) {
     const opts = { bufferCommands: false };
+    console.log('Connecting to MongoDB with URI:', MONGODB_URI);
     cached.promise = mongoose.connect(MONGODB_URI!, opts);
   }
   cached.conn = await cached.promise;

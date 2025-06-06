@@ -9,9 +9,9 @@ export type Song = {
 };
 
 export type Playlist = {
-    _id: Key | null | undefined;
+    _id: string;
     id: string;
-    title: string;
+    name: string;
     description: string;
     songs: Song[];
 };
