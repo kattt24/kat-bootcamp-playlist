@@ -1,8 +1,17 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Gloria+Hallelujah&family=Yeseva+One&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.yeseva-one-regular {
+  font-family: "Yeseva One", serif;
+  font-weight: 1200;
+  font-style: normal;
+}
+
+
+.gloria-hallelujah-regular {
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @theme inline {
@@ -24,3 +33,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-110vh); /* float off top of screen */
+  }
+}
+
+.animate-float {
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snoopyFloat {
+  0%   { transform: translateY(0) translateX(0) rotate(-3deg); }
+  50%  { transform: translateY(-12px) translateX(6px) rotate(-2deg); }
+  100% { transform: translateY(0) translateX(0) rotate(-3deg); }
+}
+
+.snoopy-float {
+  animation: snoopyFloat 3.5s ease-in-out infinite;
+}
+

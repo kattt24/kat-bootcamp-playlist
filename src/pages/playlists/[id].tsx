@@ -1,88 +1,54 @@
+// src/pages/playlists/[id].tsx
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { usePlaylist } from '@/context/playlistcontext';
-import { Song } from '@/context/playlistcontext';
 
+interface Playlist {
+  _id: string;
+  name: string;
+  description?: string;
+  createdAt: string;
+}
 
 export default function PlaylistDetailPage() {
   const router = useRouter();
   const { id } = router.query;
-  const { playlists, addSong } = usePlaylist();
-  const playlist = playlists.find((p) => p.id === id);
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState<Song[]>([]);
+  const [playlist, setPlaylist] = useState<Playlist | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!searchTerm) return;
-  
-    const delay = setTimeout(() => {
-      fetch(`/api/spotify-search?q=${encodeURIComponent(searchTerm)}`)
-        .then((res) => res.json())
-        .then((data) => setResults(data.results || []))
-        .catch((err) => console.error("Search error:", err));
-    }, 400);
-  
-    return () => clearTimeout(delay);
-  }, [searchTerm]);
+    if (id) {
+      console.log('Fetching playlist with ID:', id);
 
-  if (!playlist) return <div className="text-white p-8">Playlist not found.</div>;
+      fetch(`/api/playlists/${id}`)
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error(`API responded with status ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setPlaylist(data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load playlist:', err);
+        setLoading(false);
+      });
+    }
+  }, [id]);
+
+  if (loading) return <p className="p-6">Loading playlist...</p>;
+  if (!playlist) return <p className="p-6 text-red-600">Playlist not found</p>;
 
   return (
-    <div className="min-h-screen bg-pink-100 text-black p-8">
-      <h1 className="text-3xl font-bold">{playlist.title}</h1>
-      <p className="text-pink-700 mb-4">{playlist.description}</p>
+    <div className="min-h-screen bg-yellow-50 p-6">
+      <h1 className="text-3xl font-bold mb-2">{playlist.name}</h1>
+      {playlist.description && <p className="mb-4">{playlist.description}</p>}
+      <p className="italic text-sm text-gray-500">Created at: {new Date(playlist.createdAt).toLocaleString()}</p>
 
-      <input
-        type="text"
-        placeholder="Search Spotify..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 border rounded mb-6"
-      />
-
-{results.length > 0 && (
-  <div className="mb-8">
-    <h2 className="text-xl font-semibold mb-2">Search Results</h2>
-    <ul className="space-y-2">
-      {results.map((track) => (
-        <li
-          key={track.id}
-          className="flex items-center gap-4 bg-white p-4 rounded shadow"
-        >
-          {track.image && (
-            <img
-              src={track.image}
-              alt={track.title}
-              className="w-12 h-12 rounded"
-            />
-          )}
-          <div className="flex-1">
-            <p className="font-semibold">{track.title}</p>
-            <p className="text-sm text-gray-600">
-              {track.artist} • {track.album}
-            </p>
-          </div>
-          <button
-            onClick={() => addSong(playlist.id, { ...track })}
-            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-          >
-            +
-          </button>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">Songs</h2>
-      <ul>
-        {playlist.songs.map((song) => (
-          <li key={song.id} className="mb-2">
-            <strong>{song.title}</strong> by {song.artist} — <em>{song.album}</em>
-          </li>
-        ))}
-      </ul>
+      {/* Optional: Add song form or song list goes here */}
     </div>
   );
 }

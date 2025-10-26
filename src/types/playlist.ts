@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export type Song = {
     id: string;
     title: string;
@@ -7,8 +9,9 @@ export type Song = {
 };
 
 export type Playlist = {
+    _id: string;
     id: string;
-    title: string;
+    name: string;
     description: string;
     songs: Song[];
 };
